@@ -1,0 +1,64 @@
+﻿<BaseV:BaseWindow
+    x:Class="Honda.View.SignatureWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:BaseV="clr-namespace:Honda.View.BaseView"
+    Title="SignatureWindow" Height="615" Width="725" WindowStartupLocation="CenterScreen" WindowStyle="None"
+    AllowsTransparency="True">
+    <Grid>
+
+        <Grid Margin="0" Background="#FFE8E9EA">
+            <Grid Margin="0">
+                <StackPanel Margin="0">
+                    <Grid Height="55" Background="#FF5296F2">
+                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="评价人员签名"
+                                   VerticalAlignment="Center" FontSize="29.333" />
+                    </Grid>
+                    <Grid Height="100" Margin="25,0,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="请在签名区内签名："
+                                       VerticalAlignment="Center" Margin="0" FontSize="26.667"
+                                       Foreground="{StaticResource BlackBackgroundBrush}" />
+                            <Button x:Name="btnClear" Content="清除内容" HorizontalAlignment="Stretch" Margin="20,0,0,0"
+                                    VerticalAlignment="Center" BorderBrush="#FFF9F4F4" Foreground="White"
+                                    FontSize="32" Width="150" Click="btnClear_Click" Background="#FF5296F2" />
+                            <Button x:Name="btnSelectPicture" Content="选择图片" HorizontalAlignment="Stretch"
+                                    Margin="50,0,0,0" VerticalAlignment="Center" BorderBrush="#FFFDF9F9"
+                                    Foreground="#FFFDFDFD" FontSize="32" Width="150" Click="btnSelectPicture_Click"
+                                    Background="#FF5296F2" />
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="gdCanvas" Height="306" Margin="25,0" Panel.ZIndex="1">
+                        <Grid x:Name="gdImaSelect" Panel.ZIndex="2" Margin="0" Visibility="Collapsed"
+                              Background="{StaticResource SignatureBackgroundBrush}">
+                            <Image x:Name="imaDra" Margin="0" Stretch="Fill" />
+                        </Grid>
+
+                        <Grid x:Name="gdHint" Margin="0" Background="#FFF5EFEF">
+                            <TextBlock HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="签名区"
+                                       VerticalAlignment="Center" Style="{StaticResource TextBlockSignatureStyle}"
+                                       Foreground="#FF9C9292" />
+                        </Grid>
+                        <InkCanvas Margin="0" Width="Auto" Height="Auto" x:Name="inkCanv" Panel.ZIndex="1" Opacity="1"
+                                   MouseEnter="inkCanv_MouseEnter" MouseLeave="inkCanv_MouseLeave"
+                                   Background="#FFFDFBFB" />
+                    </Grid>
+                    <Grid Height="140">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="362*" />
+                            <ColumnDefinition Width="363*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnCancel" Content="取消" HorizontalAlignment="Left" Margin="30,0,0,0"
+                                VerticalAlignment="Center" BorderBrush="#FFFDFBFB" Foreground="#FFFBF9F9"
+                                FontSize="32" Grid.Column="1" Width="150" Click="btnCancel_Click"
+                                Background="#FF5296F2" />
+                        <Button x:Name="btnSave" Content="保存" HorizontalAlignment="Right" Margin="0,0,30,0"
+                                VerticalAlignment="Center" BorderBrush="#FFFDFBFB" Foreground="#FFFDFBFB"
+                                FontSize="32" Width="150" Click="btnSave_Click" Background="#FF5296F2" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</BaseV:BaseWindow>

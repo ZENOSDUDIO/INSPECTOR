@@ -1,0 +1,334 @@
+﻿<BaseP:BasePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:BaseP="clr-namespace:Honda.View.BaseView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:UserCtrl="clr-namespace:Honda.UserCtrl"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    x:Class="Honda.View.StoreTourPage"
+    mc:Ignorable="d"
+    KeepAlive="True"
+    d:DesignHeight="1080" d:DesignWidth="1920"
+    Title="StoreTourPage">
+
+    <Page.DataContext>
+        <Binding Path="StoreTour" Source="{StaticResource Locator}" />
+    </Page.DataContext>
+    <Grid x:Name="LayoutRoot">
+        <i:Interaction.Triggers>
+            <i:EventTrigger>
+                <i:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Viewbox Stretch="Fill">
+            <Grid Background="{StaticResource PageBackgroundBrush}" Width="1920" Height="1080">
+                <Grid Margin="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="330" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource BlackBackgroundBrush}">
+                            <ListBox x:Name="listBox" ItemsSource="{Binding _lstStore}"
+                                     ItemContainerStyle="{DynamicResource ListBoxItemStyle1}"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                     ItemsPanel="{DynamicResource ItemsPanelTemplate1}"
+                                     IsSynchronizedWithCurrentItem="False" SelectedIndex="{Binding SelectedStoreIndex}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding SelectedStoreCommand, Mode=OneWay}"
+                                                               CommandParameter="{Binding SelectedItem, ElementName=listBox}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ListBox>
+                        </Border>
+                    </Grid>
+                    <Grid Margin="0" Background="#FFE9EFF4" Grid.Column="1" HorizontalAlignment="Stretch"
+                          Visibility="{Binding _bIsShowGroup}">
+                        <Grid Height="600" Width="1464" d:IsHidden="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Margin="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction Command="{Binding NavigateToTourCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}"
+                                          Visibility="{Binding _bIsShowTour_ToSubmit}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/ToSubmit.bmp"
+                                               Width="126" Height="38" Visibility="{Binding _bIsShowTourIma_ToSubmit}" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="巡回评价表"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                        <TextBlock HorizontalAlignment="Left" Text="待提交附件" VerticalAlignment="Bottom"
+                                                   Margin="38,0,0,20" Foreground="#FF3496F2" FontSize="30.667"
+                                                   Visibility="{Binding _bIsShowTourFile_ToSubmit}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush2}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowTour_Submited}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/Submitted.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="巡回评价表"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle2}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush3}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowTour_NotStart}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/NotStart.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="巡回评价表"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle3}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Grid.Column="1"
+                                    Margin="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding NavigateToImproveCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowImprove_ToSubmit}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/ToSubmit.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="改善计划"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush2}"
+                                          Visibility="{Binding _bIsShowImprove_Submited}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/Submitted.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="改善计划"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle2}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush3}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowImprove_NotStart}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/NotStart.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="改善计划"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle3}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowImproveCheck_ToSubmit}">
+                                        <TextBlock HorizontalAlignment="Left" Text="待审核" VerticalAlignment="Bottom"
+                                                   Margin="38,0,0,20" Foreground="#FF3496F2" FontSize="30.667" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="改善计划"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowImproveCheck_Finsih}">
+                                        <TextBlock HorizontalAlignment="Left" Text="已完成" VerticalAlignment="Bottom"
+                                                   Margin="38,0,0,20" Foreground="#FF3496F2" FontSize="30.667" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="改善计划"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Grid.Column="2"
+                                    Margin="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding NavigateToLightspotAndIdeaCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}"
+                                          Visibility="{Binding _bIsShowLightspot_ToSubmit}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/ToSubmit.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="工作亮点与意见需求"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush2}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowLightspot_Submited}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/Submitted.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="工作亮点与意见需求"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle2}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush3}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowLightspot_NotStart}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/NotStart.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="工作亮点与意见需求"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle3}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Margin="0"
+                                    Grid.Row="1">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding NavigateToBusinessCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowBusiness_ToSubmit}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/ToSubmit.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="商务政策"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush2}"
+                                          Visibility="{Binding _bIsShowBusiness_Submited}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/Submitted.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="商务政策"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle2}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush3}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowBusiness_NotStart}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/NotStart.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="商务政策"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle3}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Grid.Column="1"
+                                    Margin="0" Grid.Row="1">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction Command="{Binding NavigateToRecordCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True">
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="评价记录"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Grid.Column="2"
+                                    Margin="0" Grid.Row="1">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseUp">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding NavigateToSummaryCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                                <Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush3}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowReport_ToStart}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/NotStart.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="巡回评价总结报告"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle3}" />
+                                    </Grid>
+                                    <Grid Background="{DynamicResource ItemBackgroundBrush1}" d:IsHidden="True"
+                                          Visibility="{Binding _bIsShowReport_ToSubmit}">
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="38,0,0,20"
+                                               Stretch="None" Source="/Honda;component/Assets/Store/ToSubmit.bmp"
+                                               Width="126" Height="38" />
+                                        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="巡回评价总结报告"
+                                                   VerticalAlignment="Center"
+                                                   Style="{DynamicResource ItemTextBlockStyle1}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="gdTask" HorizontalAlignment="Center" Height="620" VerticalAlignment="Center"
+                          Width="1105" Margin="0" Grid.ColumnSpan="2" Visibility="{Binding _bIsShowTaskPanel}"
+                          d:IsHidden="True">
+                        <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Margin="0"
+                                HorizontalAlignment="Left" Width="488" Height="300" VerticalAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding ReleaseTaskCommand, Mode=OneWay}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid>
+                                <Grid Background="{DynamicResource ItemBackgroundBrush1}">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="发布评价任务"
+                                               VerticalAlignment="Center" Style="{DynamicResource ItemTextBlockStyle1}" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource ItemborderBrush}" BorderThickness="1" Margin="0"
+                                VerticalAlignment="Center" Width="488" Height="300" HorizontalAlignment="Right">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding NavigateToRecordCommand, Mode=OneWay}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid>
+                                <Grid Background="{DynamicResource ItemBackgroundBrush1}">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="评价记录"
+                                               VerticalAlignment="Center" Style="{DynamicResource ItemTextBlockStyle1}" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Button Content="工作亮点测试" Grid.Column="1" HorizontalAlignment="Left" Margin="1270,750,0,0"
+                            VerticalAlignment="Top" Width="115" Height="54.24" Click="Button_Click"
+                            Visibility="Collapsed" />
+                    <Grid Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#FFF7F1F1" Panel.ZIndex="1"
+                          Visibility="{Binding _bIsShowLoading}" d:IsHidden="True">
+                        <ProgressBar x:Name="pbLoading" HorizontalAlignment="Center" Height="55" Margin="0"
+                                     VerticalAlignment="Center" Width="755" IsIndeterminate="True" />
+                        <TextBlock HorizontalAlignment="Left" Margin="1385,520.86,0,0" TextWrapping="Wrap"
+                                   Text="正在加载数据..." VerticalAlignment="Top" FontSize="32" />
+                    </Grid>
+                    <Button Content="商务政策" Grid.Column="1" HorizontalAlignment="Left" Margin="1425,750,0,0"
+                            VerticalAlignment="Top" Width="115" Height="54.24" Click="Button_Click1"
+                            Visibility="Collapsed" />
+                </Grid>
+                <Button Content="改善计划待审核" HorizontalAlignment="Left" Margin="1755,829,0,0" VerticalAlignment="Top"
+                        Width="115" Height="54" Click="Button_Click8" Visibility="Collapsed" />
+                <Button Content="改善计划" HorizontalAlignment="Left" Margin="1584,829,0,0" VerticalAlignment="Top"
+                        Width="115" Height="54" Click="Button_Click9" Visibility="Collapsed" />
+                <Button Content="评价表" HorizontalAlignment="Left" Margin="1352,890,0,0" VerticalAlignment="Top"
+                        Width="135" Height="38" Click="Button_Click_1" Visibility="Collapsed" />
+
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</BaseP:BasePage>
