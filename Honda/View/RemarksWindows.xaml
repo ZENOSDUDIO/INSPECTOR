@@ -1,0 +1,48 @@
+﻿<BaseV:BaseWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:BaseV="clr-namespace:Honda.View.BaseView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserCtrl="clr-namespace:Honda.UserCtrl" x:Class="Honda.View.RemarksWindows"
+    Title="RemarksWindows" Height="802" Width="1168" WindowStyle="None" AllowsTransparency="True"
+    WindowStartupLocation="CenterScreen">
+    <Border BorderThickness="1" BorderBrush="#FFD3DADD">
+        <Grid Background="White">
+            <StackPanel>
+                <Grid>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="#FFD3DADD">
+                        <Grid Height="100" Background="#FFF7FAFC">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="备注说明"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource TextForegroundBlueBrush}" FontSize="36"
+                                       Margin="80,0,0,0" />
+                            <Image Height="46" Margin="36,27,0,0" VerticalAlignment="Top" Width="25" Stretch="Fill"
+                                   HorizontalAlignment="Left"
+                                   Source="/Honda;component/Assets/EvaluationOfTour/page_icons_retreat.png" />
+                            <Button x:Name="btnCancel" Content="取消" HorizontalAlignment="Right" Margin="0,0,43,0"
+                                    VerticalAlignment="Center" Width="128" BorderBrush="{x:Null}" Height="54"
+                                    Background="#FF5296F2" Foreground="#FFFDFBFB" FontSize="32" Click="btnCancel_Click" />
+                            <Button x:Name="btnSave" Content="保存" HorizontalAlignment="Right" Margin="0,0,215,0"
+                                    VerticalAlignment="Center" Width="128" BorderBrush="{x:Null}" Height="54"
+                                    Background="#FF5296F2" Foreground="#FFFFFDFD" FontSize="32" Click="btnSave_Click" />
+                        </Grid>
+                    </Border>
+                </Grid>
+                <StackPanel Height="40" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,69,0,0">
+                    <TextBlock TextWrapping="Wrap" Text="说明文字" Margin="80,0,0,0" FontSize="32"
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF332826" />
+                    <TextBlock TextWrapping="Wrap" Text="（可输入200个字）" VerticalAlignment="Top" Margin="22,5,0,4"
+                               Foreground="#FF6E6E6D" FontSize="25" />
+                </StackPanel>
+                <TextBox x:Name="tbContent" Height="279" TextWrapping="Wrap" Margin="80,26,80,0" FontSize="25"
+                         Background="#FFF7FAF7" BorderBrush="#FFECEDED" Foreground="#FF777777"
+                         SelectionBrush="{x:Null}" />
+                <Grid Height="139" Margin="80,65,20,0">
+                    <UserCtrl:ImageListUCT x:Name="imageListUCT" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                           Height="138" />
+
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</BaseV:BaseWindow>

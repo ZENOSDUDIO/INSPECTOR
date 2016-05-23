@@ -1,0 +1,161 @@
+﻿<BaseP:BasePage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:BaseP="clr-namespace:Honda.View.BaseView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:UserCtrl="clr-namespace:Honda.UserCtrl"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    x:Class="Honda.View.LoginPage"
+    xmlns:Helper="clr-namespace:Honda.Globals"
+    mc:Ignorable="d"
+    KeepAlive="True"
+    d:DesignHeight="1080" d:DesignWidth="1920"
+    Title="Login" DataContext="{Binding Login, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid Height="1080" Width="1920" Background="{DynamicResource Login_PageBackgroundBrush}">
+                <StackPanel>
+                    <Grid Height="114" DataContext="{Binding Source={StaticResource Locator}}">
+                        <Image Height="114" Source="/Honda;component/Assets/Login/top.png" Stretch="Fill"
+                               MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding Main.WindowCommandAction, Mode=OneWay}"
+                                                           CommandParameter="{Binding Main.strCommandDragMove}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+                        <Grid HorizontalAlignment="Right" Height="56" VerticalAlignment="Top" Width="152"
+                              Margin="0,8,28,0" DataContext="{Binding Source={StaticResource Locator}}">
+                            <StackPanel Orientation="Horizontal" x:Name="sp_wd_btn" Visibility="Collapsed">
+                                <UserCtrl:ImageButtonEx Content="ImageButtonEx"
+                                                        Style="{DynamicResource ImageButtonExStyle3}" Width="61"
+                                                        BorderThickness="0" Height="55"
+                                                        ImagePressSource="/Honda;component/Assets/MainPage/h_2.png"
+                                                        ImageSource="/Honda;component/Assets/MainPage/h_02.png">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction
+                                                Command="{Binding Main.WindowCommandAction, Mode=OneWay}"
+                                                CommandParameter="{Binding Main.StrCommandMin}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </UserCtrl:ImageButtonEx>
+                                <UserCtrl:ImageButtonEx Content="ImageButtonEx"
+                                                        Style="{DynamicResource ImageButtonExStyle3}" Width="61"
+                                                        BorderThickness="0" Height="55" Margin="30,0.5,0,0.5"
+                                                        ImageSource="/Honda;component/Assets/MainPage/h_0.png"
+                                                        ImagePressSource="/Honda;component/Assets/MainPage/h_1.png">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction
+                                                Command="{Binding Main.WindowCommandAction, Mode=OneWay}"
+                                                CommandParameter="{Binding Main.StrCommandClose}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </UserCtrl:ImageButtonEx>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <StackPanel HorizontalAlignment="Center" Margin="0,149,0,0" Width="685">
+                        <Grid Height="84" Width="685">
+                            <Image Height="84" Width="450" Margin="0"
+                                   Source="/Honda;component/Assets/Login/login_name.png" />
+                        </Grid>
+                        <Grid x:Name="gd_Mid_Mid1" Margin="0,125,0,0">
+                            <Border CornerRadius="20" BorderThickness="5,4,5,5"
+                                    BorderBrush="{StaticResource Login_BorderBrush}" VerticalAlignment="Top">
+                                <Grid Height="226">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Height="113" VerticalAlignment="Top">
+                                        <Border BorderBrush="{StaticResource Login_BorderBrush}"
+                                                BorderThickness="0,0,0,2.5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="106*" />
+                                                    <ColumnDefinition Width="569*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <Image Source="/Honda;component/Assets/Login/login_icon1.png"
+                                                           Stretch="None" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" />
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <TextBox x:Name="tbUserName" HorizontalAlignment="Center"
+                                                             TextWrapping="Wrap" BorderThickness="0" FontSize="27"
+                                                             VerticalAlignment="Center"
+                                                             Margin="46.5,38.105,57.5,38.105" Width="465"
+                                                             Text="{Binding StrUserAccount,Mode=TwoWay}"
+                                                             GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
+                                                </Grid>
+
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Border BorderBrush="{StaticResource Login_BorderBrush}"
+                                                BorderThickness="0,2.5,0,0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="106*" />
+                                                    <ColumnDefinition Width="569*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <Image Source="/Honda;component/Assets/Login/login_icon2.png"
+                                                           Stretch="None" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" />
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <PasswordBox HorizontalAlignment="Center"
+                                                                 VerticalAlignment="Center" FontSize="27"
+                                                                 Margin="46,34,58,40" Width="465"
+                                                                 BorderThickness="0"
+                                                                 Helper:PasswordBoxHelper.Attach="True"
+                                                                 Helper:PasswordBoxHelper.Password="{Binding Path=StrPwd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                 GotFocus="PasswordBox_GotFocus"
+                                                                 LostFocus="PasswordBox_LostFocus" />
+                                                </Grid>
+
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="gd_Mid_Mid2" Grid.Row="2" Margin="0,35,0,0">
+                            <CheckBox x:Name="cbRecordUserNumber" Content="记住姓名" VerticalAlignment="Center"
+                                      Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="27"
+                                      Style="{DynamicResource CheckBoxStyle1}" Background="{x:Null}"
+                                      BorderThickness="2" Foreground="#FF53ABDB" IsChecked="{Binding BIsSaveAccount}" />
+                            <CheckBox x:Name="cbaAutomaticLogin" Content="自动登录" VerticalAlignment="Top"
+                                      BorderThickness="2" HorizontalAlignment="Right" Margin="0,0,20,0" FontSize="27"
+                                      Style="{DynamicResource CheckBoxStyle1}" Background="{x:Null}"
+                                      Foreground="#FF53ABDB" IsChecked="{Binding BIsAutoLogin}" />
+                        </Grid>
+                        <UserCtrl:ImageButtonEx Content="ImageButtonEx" HorizontalAlignment="Center" Margin="0,129,0,0"
+                                                VerticalAlignment="Center"
+                                                Style="{DynamicResource ImageButtonExStyle3}"
+                                                ImageSource="/Honda;component/Assets/Login/login_bnt1.png"
+                                                ImagePressSource="/Honda;component/Assets/Login/login_bnt1_1.png"
+                                                Height="93" Width="685" Cursor="Hand" Command="{Binding LoginCommand}" />
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="btnHttpTest" Content="接口测试" HorizontalAlignment="Left" Margin="1731,933,0,0"
+                        VerticalAlignment="Top" Width="75" Click="btnHttpTest_Click" Visibility="Hidden" />
+                <Button Content="test" HorizontalAlignment="Left" Margin="1731,983,0,0" VerticalAlignment="Top"
+                        Width="75" Click="Button_Click" Visibility="Hidden" />
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</BaseP:BasePage>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="Honda.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:AFG="clr-namespace:AForge.Controls;assembly=AForge.Controls"
+        Title="Window1" Height="480" Width="1000">
+    <Grid>
+        <wfi:WindowsFormsHost Width="360" Height="300">
+            <AFG:VideoSourcePlayer x:Name="AFGMyCamera" Width="360" Height="300" />
+        </wfi:WindowsFormsHost>
+        <wfi:WindowsFormsHost Width="360" Height="300">
+            <AFG:VideoSourcePlayer x:Name="AFGMyCamera2" Width="360" Height="300" />
+        </wfi:WindowsFormsHost>
+    </Grid>
+</Window>

@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Honda.UserCtrl.ProduceCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="40" d:DesignWidth="800" Height="45">
+    <Grid>
+        <Border x:Name="bd_1" BorderBrush="{DynamicResource PreviewFormBorder}" Style="{DynamicResource BorderStyle1}"
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="bd_1_1" BorderBrush="{DynamicResource PreviewFormBorder}"
+                        Style="{DynamicResource BorderStyle1}" BorderThickness="1,0" Margin="0,0,0,-1">
+                    <Grid x:Name="gd_1">
+                        <TextBlock x:Name="tbkEvaluationContent" Text="具体评价内容"
+                                   Style="{DynamicResource TextBlockStyle2}" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+
+                    </Grid>
+                </Border>
+                <Border x:Name="bd_1_2" BorderBrush="{DynamicResource PreviewFormBorder}"
+                        Style="{DynamicResource BorderStyle1}" BorderThickness="0,0,1,0" Margin="0,0,0,-1"
+                        Grid.Column="1">
+                    <Grid>
+                        <TextBlock x:Name="tbkLastScore" Text="100" Style="{DynamicResource TextBlockStyle2}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="bd_1_3" BorderBrush="{DynamicResource PreviewFormBorder}"
+                        Style="{DynamicResource BorderStyle1}" BorderThickness="0,0,1,0" Margin="0,0,0,-1"
+                        Grid.Column="2">
+                    <Grid>
+                        <TextBlock x:Name="tbkSelfScore" Text="100" Style="{DynamicResource TextBlockStyle2}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="bd_1_4" BorderBrush="{DynamicResource PreviewFormBorder}"
+                        Style="{DynamicResource BorderStyle1}" BorderThickness="0,0,1,0" Margin="0,0,0,-1"
+                        Grid.Column="3">
+                    <Grid>
+                        <TextBlock x:Name="tbkTourScore" Text="100" Style="{DynamicResource TextBlockStyle2}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+                <Border x:Name="bd_1_5" BorderBrush="{DynamicResource PreviewFormBorder}"
+                        Style="{DynamicResource BorderStyle1}" BorderThickness="0" Margin="0,0,0,-1" Grid.Column="4">
+                    <Grid>
+                        <TextBlock x:Name="btkCheck" Text="查看" Style="{DynamicResource TextBlockStyle2}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF44C0E4"
+                                   MouseUp="btkCheck_MouseUp" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

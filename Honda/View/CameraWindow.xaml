@@ -1,0 +1,52 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+    xmlns:aforge="clr-namespace:AForge.Controls;assembly=AForge.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserCtrl="clr-namespace:Honda.UserCtrl" x:Class="Honda.View.CameraWindow"
+    Title="CameraWindow" Height="766" Width="1168" WindowStartupLocation="CenterScreen" WindowStyle="None"
+    AllowsTransparency="False">
+    <Border BorderThickness="1" BorderBrush="#FFD3DADD">
+
+
+        <Grid>
+            <Grid Margin="0,0,0,663">
+                <Border BorderThickness="0,0,0,1" BorderBrush="#FFD3DADD">
+                    <Grid Height="100" Background="#FFF7FAFC">
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="拍摄相片"
+                                   VerticalAlignment="Center" Foreground="{DynamicResource TextForegroundBlueBrush}"
+                                   FontSize="36" Margin="80,0,0,0" />
+                        <Image Height="46" Margin="36,27,0,0" VerticalAlignment="Top" Width="25" Stretch="Fill"
+                               HorizontalAlignment="Left"
+                               Source="/Honda;component/Assets/EvaluationOfTour/page_icons_retreat.png" />
+                        <Button x:Name="btnCancel" Content="取消" HorizontalAlignment="Right" Margin="0,0,43,0"
+                                VerticalAlignment="Center" Width="128" BorderBrush="{x:Null}" Height="54"
+                                Background="#FF5296F2" Foreground="#FFFDFBFB" FontSize="32" Click="btnCancel_Click" />
+                        <Button x:Name="btnSave" Content="保存" HorizontalAlignment="Right" Margin="0,0,215,0"
+                                VerticalAlignment="Center" Width="128" BorderBrush="{x:Null}" Height="54"
+                                Background="#FF5296F2" Foreground="#FFFFFDFD" FontSize="32" Click="btnSave_Click" />
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Margin="0,101,0,0" x:Name="gdVideo" Background="White">
+                <Image x:Name="imaShow" Stretch="Fill" Width="1150" Height="648" />
+                <wfi:WindowsFormsHost Grid.Row="0" Margin="5" x:Name="VideoWFH" Width="1150" Height="648">
+                    <aforge:VideoSourcePlayer x:Name="sourcePlayer" Width="1150" Height="648" />
+                </wfi:WindowsFormsHost>
+
+                <UserCtrl:ImageButtonEx x:Name="btnSwitchCamera" Content="ImageButtonEx" HorizontalAlignment="Right"
+                                        Height="49" Style="{DynamicResource ImageButtonExStyle3}"
+                                        VerticalAlignment="Top" Width="62" Margin="0,-75,704,0"
+                                        ImageSource="/Honda;component/Assets/Remark/icon_1chooseEdit.png"
+                                        ImagePressSource="/Honda;component/Assets/Remark/icon_2chooseEdit.png"
+                                        Click="btnSwitchCamera_Click" Panel.ZIndex="2" />
+                <UserCtrl:ImageButtonEx x:Name="btnTakePhotos" Content="ImageButtonEx" HorizontalAlignment="Right"
+                                        Height="65" Style="{DynamicResource ImageButtonExStyle3}"
+                                        VerticalAlignment="Top" Width="127" Margin="0,-83,464,0"
+                                        ImageSource="/Honda;component/Assets/Remark/icon_1shootEdit.png"
+                                        ImagePressSource="/Honda;component/Assets/Remark/icon_2shootEdit.png"
+                                        Click="btnTakePhotos_Click" Panel.ZIndex="2" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

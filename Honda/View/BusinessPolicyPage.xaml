@@ -1,0 +1,501 @@
+﻿<BaseP:BasePage
+
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:BaseP="clr-namespace:Honda.View.BaseView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:UserCtrl="clr-namespace:Honda.UserCtrl"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:Custom="http://www.galasoft.ch/mvvmlight" x:Class="Honda.View.BusinessPolicyPage"
+
+
+    mc:Ignorable="d"
+    d:DesignHeight="1080" d:DesignWidth="1920"
+    Title="Evaluation" DataContext="{Binding BusinessPolicy, Source={StaticResource Locator}}">
+
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <i:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
+    <Grid x:Name="LayoutRoot">
+        <Viewbox Stretch="Fill" >
+            <Grid Background="{StaticResource PageBackgroundBrush}" Width="1920" Height="1080">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="119" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Border BorderThickness="0,0,0,0" BorderBrush="{StaticResource BlackBackgroundBrush}">
+                        <Grid>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,45,0,0" Orientation="Horizontal" HorizontalAlignment="Left"
+                                            VerticalAlignment="Top">
+                                    <UserCtrl:ImageButtonEx x:Name="btnBack" Content="ImageButtonEx"
+                                                            HorizontalAlignment="Stretch"
+                                                            Style="{StaticResource ImageButtonExStyle1}"
+                                                            VerticalAlignment="Bottom" Width="25" BorderThickness="0"
+                                                            Margin="54,0,0,0" Height="46"
+                                                            ImageSource="/Honda;component/Assets/EvaluationOfTour/page_icons_retreat.png"
+                                                            ImagePressSource="/Honda;component/Assets/EvaluationOfTour/page_icons_retreat.png"
+                                                            Cursor="Hand" Visibility="Collapsed" />
+                                    <Grid Height="45" Margin="15,0,0,0">
+                                        <TextBlock TextWrapping="Wrap" Text="商务政策" HorizontalAlignment="Left"
+                                                   VerticalAlignment="Bottom"
+                                                   Foreground="{StaticResource TextForegroundBlueBrush}"
+                                                   Margin="0,0,0,-8" FontSize="40" />
+                                    </Grid>
+                                    <TextBlock x:Name="tbkStoreName" TextWrapping="Wrap" FontSize="32"
+                                               VerticalAlignment="Bottom" Margin="45,0,0,0" Foreground="#FF060606">
+                                        <Hyperlink NavigateUri="StoreTourPage.xaml">
+                                            <TextBlock Text="{Binding StoreName}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Grid HorizontalAlignment="Right">
+                                    <Grid HorizontalAlignment="Right">
+                                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="0,38,0,0">
+                                            <Button x:Name="btnExport" Content="导出商务政策" Width="230" FontSize="32"
+                                                    Height="65" Margin="0,0,100,0" BorderThickness="0"
+                                                    Foreground="White"
+                                                    Background="{DynamicResource ButtonBackgroundNormalBlueBrush}"
+                                                    Command="{Binding ExportDataCommand}" />
+                                            <Button x:Name="btnCommit" Content="提交" Width="200" FontSize="32"
+                                                    Height="65" Margin="0,0,100,0" BorderThickness="0"
+                                                    Foreground="White"
+                                                    Background="{DynamicResource ButtonBackgroundNormalBlueBrush}"
+                                                    Command="{Binding UploadDataCommand}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="167*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="101*" />
+                            <RowDefinition Height="860*" />
+                        </Grid.RowDefinitions>
+                        <UserCtrl:UCTabNavigationBar x:Name="Tabbar" Margin="30,0,30,8" />
+                        <Grid x:Name="gd1" Grid.Row="1" d:IsHidden="True">
+                            <StackPanel  Margin="0,0,25,0">
+                                <Grid Height="100">
+                                    <Grid x:Name="gdBottom1" Margin="0"
+                                          Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*" />
+                                            <ColumnDefinition Width="4*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="10*" />
+                                            <ColumnDefinition Width="4*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Margin="0,0,-1.5,0"
+                                              Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="0,0,0,1">
+                                                <TextBlock Margin="0" Text="零件名称"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="1">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1" Margin="1.5,0,0,0">
+                                                <TextBlock Margin="9,24,10,23" x:Name="tbkAllLastScore" Text="对应本零件号"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="2">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="9,24,10,24" x:Name="tbkAllSelfScore" Text="价格"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0,0,1,0" Grid.Column="3">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore" Text="数量"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1,0,1.5,0" Grid.Column="4">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore1" Text="使用日期"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1.5,0,1,0" Grid.Column="5">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore2" Text="供应商"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1,0,2,0" Grid.Column="6">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore3" Text="备注"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-3,0,0,0" Grid.Column="8">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore5" Text="操作"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <ListBox VerticalAlignment="Top"
+                                         ItemContainerStyle="{DynamicResource ListBoxItemBusinessesStyle1}"
+                                         BorderThickness="0" ItemsSource="{Binding ListNotPureComponent}"
+                                         MaxHeight="650" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                         ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Background="{x:Null}"
+                                         BorderBrush="{x:Null}" />
+                                <Grid Height="100">
+                                    <Button Content="+ 增加一条" BorderBrush="#FFB2AAAA" BorderThickness="1"
+                                            Background="{x:Null}" FontSize="32" Foreground="#FFB2AAAA"
+                                            Command="{Binding AddNotPureComponentCommand}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid x:Name="gd2" Grid.Row="1" d:IsHidden="True">
+                            <StackPanel  Margin="0,0,25,0">
+                                <Grid Height="100">
+                                    <Grid x:Name="gdBottom2" Margin="0"
+                                          Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="6*" />
+                                            <ColumnDefinition Width="16*" />
+                                            <ColumnDefinition Width="10*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="3*" />
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Margin="0" Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="0,0,0,1">
+                                                <TextBlock Margin="0" Text="外销商"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="1">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1" Margin="1.5,0,0,0">
+                                                <TextBlock Margin="0,35.395,85.163,34.395" x:Name="tbkAllLastScore1"
+                                                           Text="金额" Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="2">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="9,24,10,24" x:Name="tbkAllSelfScore1" Text="日期"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="3">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore6" Text="主要零件"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="4">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore7" Text="备注"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="8">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore11" Text="操作"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <ListBox VerticalAlignment="Top"
+                                         ItemContainerStyle="{DynamicResource ListBoxItemBusinessStyle2}"
+                                         BorderThickness="0" ItemsSource="{Binding ListComponentESDepartment}"
+                                         MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                         ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Background="{x:Null}"
+                                         BorderBrush="{x:Null}" />
+                                <Grid Height="100">
+                                    <Button Content="+ 增加一条" BorderBrush="#FFB2AAAA" BorderThickness="1"
+                                            Background="{x:Null}" FontSize="32" Foreground="#FFB2AAAA"
+                                            Command="{Binding AddComponentESDepartmentCommand}" />
+                                </Grid>
+                                <Grid Height="100" Margin="0,50,0,0">
+                                    <Grid x:Name="gdBottom4" Margin="0"
+                                          Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="6*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Margin="0" Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="0,0,0,1">
+                                                <TextBlock Margin="0" Text="零件号"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="1">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1" Margin="1.5,0,0,0">
+                                                <TextBlock Margin="0,35.395,85.163,34.395" x:Name="tbkAllLastScore3"
+                                                           Text="零件名称" Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="2">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="9,24,10,24" x:Name="tbkAllSelfScore3" Text="数量"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="3">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore4" Text="使用日期"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="4">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore10" Text="外销对象"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="5">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore8" Text="备注"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="8">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore9" Text="操作"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <ListBox VerticalAlignment="Top"
+                                         ItemContainerStyle="{DynamicResource ListBoxItemBusinessStyle2_1}"
+                                         BorderThickness="0" ItemsSource="{Binding ListComponentESDepartment2}"
+                                         MaxHeight="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                         ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Background="{x:Null}"
+                                         BorderBrush="{x:Null}" />
+                                <Grid Height="100">
+                                    <Button Content="+ 增加一条" BorderBrush="#FFB2AAAA" BorderThickness="1"
+                                            Background="{x:Null}" FontSize="32" Foreground="#FFB2AAAA"
+                                            Command="{Binding AddComponentESDepartmentCommand2}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid x:Name="gd3" Grid.Row="1">
+                            <StackPanel  Margin="0,0,25,0">
+                                <Grid Height="100">
+                                    <Grid x:Name="gdBottom3" Margin="0"
+                                          Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="8*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Margin="0,0,-1.5,0"
+                                              Background="{DynamicResource FormTopAndBottomBorderBrush}">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="0,0,0,1">
+                                                <TextBlock Margin="0" Text="零件号"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="1">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1" Margin="1.5,0,0,0">
+                                                <TextBlock Margin="9,24,10,23" x:Name="tbkAllLastScore2" Text="零件名称"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0" Grid.Column="2">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="9,24,10,24" x:Name="tbkAllSelfScore2" Text="销售价"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="0,0,1,0" Grid.Column="3">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore12" Text="标准价"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1,0,1.5,0" Grid.Column="4">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore13" Text="差价"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1.5,0,1,0" Grid.Column="5">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore14" Text="数量"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-1,0,2,0" Grid.Column="6">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore15" Text="销售时间"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-2,0,3,0" Grid.Column="7">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore16" Text="备注"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                        <Grid Margin="-3,0,0,0" Grid.Column="8">
+                                            <Border BorderBrush="White" Style="{DynamicResource BorderStyle1}"
+                                                    BorderThickness="1,0,0,1">
+                                                <TextBlock Margin="0" x:Name="tbkAllTourScore17" Text="操作"
+                                                           Style="{StaticResource FormHeaderTextStyle}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <ListBox VerticalAlignment="Top"
+                                         ItemContainerStyle="{DynamicResource ListBoxItemBusinessStyle3}"
+                                         BorderThickness="0" ItemsSource="{Binding ListComponentPrice}" MaxHeight="650"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                         ItemsPanel="{DynamicResource ItemsPanelTemplate1}" Background="{x:Null}"
+                                         BorderBrush="{x:Null}" />
+                                <Grid Height="100">
+                                    <Button Content="+ 增加一条" BorderBrush="#FFB2AAAA" BorderThickness="1"
+                                            Background="{x:Null}" FontSize="32" Foreground="#FFB2AAAA"
+                                            Command="{Binding AddComponentPriceCommand}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <!--<StackPanel Margin="0,200,0,0" Grid.Column="1" HorizontalAlignment="Center" Width="180"
+                                VerticalAlignment="Top">
+                        <TextBlock TextWrapping="Wrap" Text="评价人员签名" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   FontSize="29.333" />
+                        <Grid x:Name="gdValuator1" VerticalAlignment="Top" Margin="0,25,0,0" Background="#FFF9F5F5"
+                              Height="80">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <Custom:EventToCommand Command="{Binding OpenSignatureValuatorWMCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border x:Name="bdValuator1" BorderBrush="Black" BorderThickness="2">
+
+                                <Image x:Name="imaValuator1" Stretch="Fill" />
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="零部件经理签名" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="26"
+                                   Margin="0,40,0,0" />
+                        <Grid x:Name="gdComponent" Height="80" VerticalAlignment="Top" Margin="0,25,0,0"
+                              Background="#FFF9F5F5">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <Custom:EventToCommand Command="{Binding OpenSignatureComponentWMCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border x:Name="bd" BorderBrush="Black" BorderThickness="2">
+                                <Image x:Name="imaComponent" Stretch="Fill" Margin="0" />
+                            </Border>
+                        </Grid>
+                        <TextBlock TextWrapping="Wrap" Text="总经理签名" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   FontSize="29.333" Margin="0,40,0,0" />
+                        <Grid x:Name="gdGeneral" Height="80" VerticalAlignment="Top" Margin="0,25,0,0"
+                              Background="#FFF9F5F5">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <Custom:EventToCommand Command="{Binding OpenSignatureGeneralWMCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Border BorderBrush="Black" BorderThickness="2">
+                                <Image x:Name="ImaGeneral" Stretch="Fill" Margin="0" />
+                            </Border>
+                        </Grid>
+                    </StackPanel>-->
+                </Grid>
+
+            </Grid>
+        </Viewbox>
+
+    </Grid>
+</BaseP:BasePage>
